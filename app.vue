@@ -17,7 +17,7 @@ const allowMessages = () => {
       key: "dBuBKe1kFcdemzB",
     })
     .then(() => {
-      window.location.href = "https://vk.com/im?sel=-170533771";
+      window.open("https://vk.me/partainfo");
     })
     .catch(() => {
       allowMessages();

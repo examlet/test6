@@ -20,7 +20,7 @@ const allowMessages = () => {
       window.location.href = "https://vk.com/im?sel=-170533771";
     })
     .catch(() => {
-      allowMessages;
+      allowMessages();
     });
 };
 </script>

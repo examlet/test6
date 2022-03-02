@@ -6,6 +6,10 @@
     "start": "node .output/server/index.mjs"
   },
   "devDependencies": {
+    "@vkontakte/vk-bridge": "^2.5.3",
     "nuxt3": "latest"
+  },
+  "dependencies": {
+    "@vkontakte/vk-bridge": "^2.5.3"
   }
 }

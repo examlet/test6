@@ -1,19 +1,33 @@
 <script lang="ts" setup>
 import bridge from "@vkontakte/vk-bridge";
 
+const userVkId = ref(-1);
+
 bridge.send("VKWebAppInit", {});
 bridge.subscribe((e) => console.log(e));
 
+bridge.send("VKWebAppGetUserInfo").then((data) => {
+  userVkId.value = data.id;
+});
+
 const allowMessages = () => {
-  bridge.send("VKWebAppAllowMessagesFromGroup", {
-    group_id: 170533771,
-    key: "dBuBKe1kFcdemzB",
-  });
+  bridge
+    .send("VKWebAppAllowMessagesFromGroup", {
+      group_id: 170533771,
+      key: "dBuBKe1kFcdemzB",
+    })
+    .then((data) => {
+      console.log(data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 };
 </script>
 
 <template>
   <div>
+    <div>{{ userVkId }}</div>
     <button @click="allowMessages">Подписаться</button>
   </div>
 </template>

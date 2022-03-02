@@ -16,11 +16,11 @@ const allowMessages = () => {
       group_id: 170533771,
       key: "dBuBKe1kFcdemzB",
     })
-    .then((data) => {
-      console.log(data);
+    .then(() => {
+      window.location.href = "https://vk.com/im?sel=-170533771";
     })
-    .catch((error) => {
-      console.log(error);
+    .catch(() => {
+      allowMessages;
     });
 };
 </script>

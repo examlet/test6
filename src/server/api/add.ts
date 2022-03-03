@@ -9,6 +9,7 @@ export default async (req, res) => {
     formData.append("v", "2");
     formData.append("subscription_id", "1584736");
     formData.append("vk_user_id", `${query.userVkId}`);
+    formData.append("utm_term", `miniapp`);
 
     const response = await fetch("https://senler.ru/api/subscribers/add", {
         method: "POST",

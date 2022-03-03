@@ -2,10 +2,10 @@
 import bridge from "@vkontakte/vk-bridge";
 import QButton from "./components/QButton.vue";
 
-const userVkId = ref(163906093);
+const userVkId = ref(-1);
 
 bridge.send("VKWebAppInit", {});
-bridge.subscribe((e) => console.log(e));
+// bridge.subscribe((e) => console.log(e));
 
 bridge.send("VKWebAppGetUserInfo").then((data) => {
   userVkId.value = data.id;
@@ -15,9 +15,7 @@ const openGroup = () => window.open("https://vk.com/partainfo");
 const openDialog = () => window.open("https://vk.me/partainfo");
 
 const sendToSenler = async () => {
-  let result = await useFetch(`/api/add?userVkId=${userVkId.value}`);
-  console.log(result);
-  window.open("https://vk.me/partainfo");
+  await useFetch(`/api/add?userVkId=${userVkId.value}`).then(openDialog);
 };
 
 const allowMessages = () => {
@@ -39,15 +37,13 @@ onMounted(() => {
   bridge
     .send("VKWebAppAllowMessagesFromGroup", {
       group_id: 170533771,
-      key: "dBuBKe1kFcdemzB",
+      key: "dBuBKe1kFcdemzB2",
     })
     .then(() => {
-      allowMessages();
+      sendToSenler();
+      openDialog();
     });
 });
-
-const submenu_hidden = ref(true);
-const changeSubmenu = () => (submenu_hidden.value = !submenu_hidden.value);
 </script>
 
 <template>

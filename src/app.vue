@@ -74,7 +74,7 @@ const changeSubmenu = () => (submenu_hidden.value = !submenu_hidden.value);
     <div class="landing__body mx-auto px-20px text-center my-auto items-center">
       <div class="mt-10px text-2xl">Шаблоны программ</div>
       <div class="mx-auto mt-5px text-2xl">для заданий первой части (ЕГЭ)</div>
-      <QButton @click="sendToSenler" strong class="mt-20px text-2xl h-70px"
+      <QButton @click="allowMessages" strong class="mt-20px text-2xl h-70px"
         >Получить материалы</QButton
       >
       <div mx-auto class="mt-20px px-20px">

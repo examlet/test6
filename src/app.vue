@@ -34,15 +34,14 @@ const allowMessages = () => {
     });
 };
 
-onMounted(() => {
+onMounted(async () => {
   bridge
     .send("VKWebAppAllowMessagesFromGroup", {
       group_id: 170533771,
       key: "dBuBKe1kFcdemzB",
     })
     .then(() => {
-      sendToSenler();
-      openDialog();
+      allowMessages();
     });
 });
 

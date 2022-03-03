@@ -26,7 +26,6 @@ const allowMessages = () => {
     })
     .then(() => {
       sendToSenler();
-      openDialog();
     })
     .catch(() => {
       allowMessages();
@@ -41,7 +40,6 @@ onMounted(() => {
     })
     .then(() => {
       sendToSenler();
-      openDialog();
     });
 });
 </script>

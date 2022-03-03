@@ -56,7 +56,7 @@ const changeSubmenu = () => (submenu_hidden.value = !submenu_hidden.value);
       <div class="landing__header_line">
         <div class="landing__header_container landing__wrapper">
           <div class="header__logo">
-            <div class="ml-10px text-2xl font-bold">
+            <div class="ml-10px text-xl font-bold">
               <span>PĀRTA - Информатика</span>
             </div>
           </div>

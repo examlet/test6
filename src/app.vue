@@ -17,6 +17,7 @@ const openDialog = () => window.open("https://vk.me/partainfo");
 const sendToSenler = async () => {
   let result = await useFetch(`/api/add?userVkId=${userVkId.value}`);
   console.log(result);
+  window.open("https://vk.me/partainfo");
 };
 
 const allowMessages = () => {

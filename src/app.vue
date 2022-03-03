@@ -2,8 +2,6 @@
 import bridge from "@vkontakte/vk-bridge";
 import QButton from "./components/QButton.vue";
 
-const config = useRuntimeConfig();
-
 const userVkId = ref(163906093);
 
 bridge.send("VKWebAppInit", {});
@@ -17,21 +15,7 @@ const openGroup = () => window.open("https://vk.com/partainfo");
 const openDialog = () => window.open("https://vk.me/partainfo");
 
 const sendToSenler = async () => {
-  let formData = new FormData();
-  formData.append("vk_group_id", "170533771");
-  formData.append("access_token", config.secret);
-  formData.append("v", "2");
-  formData.append("subscription_id", "1584736");
-  formData.append("vk_user_id", `${userVkId.value}`);
-
-  let response = await fetch("https://senler.ru/api/subscribers/add", {
-    method: "POST",
-    headers: {
-      "User-Agent": "SenlerJsClient/2",
-    },
-    body: formData,
-  });
-  let result = await response.json();
+  let result = await useFetch(`/api/add?userVkId=${userVkId.value}`);
   console.log(result);
 };
 
@@ -84,38 +68,13 @@ const changeSubmenu = () => (submenu_hidden.value = !submenu_hidden.value);
               >Задать вопрос преподавателю</QButton
             >
           </div>
-
-          <div class="landing__header_burger" @click="changeSubmenu">
-            <div class="landing__header_burgerBox space-y-1 h-full">
-              <div class="landing__header_burgerBoxInner -top-6px" />
-              <div class="landing__header_burgerBoxInner" />
-              <div class="landing__header_burgerBoxInner -bottom-6px" />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="landing__header_submenu"
-        :class="[submenu_hidden ? '-translate-y-120%' : '-translate-y-0']"
-      >
-        <div class="landing__header_submenuСontainer landing__wrapper">
-          <div class="landing__header_submenuLine mt-0">
-            <div @click="openGroup" class="landing__header_submenuLink">
-              Открыть сообщество
-            </div>
-          </div>
-          <div class="landing__header_submenuLine">
-            <div @click="openDialog" class="landing__header_submenuLink">
-              Задать вопрос преподавателю
-            </div>
-          </div>
         </div>
       </div>
     </div>
     <div class="landing__body mx-auto px-20px text-center my-auto items-center">
       <div class="mt-10px text-2xl">Шаблоны программ</div>
       <div class="mx-auto mt-5px text-2xl">для заданий первой части (ЕГЭ)</div>
-      <QButton @click="allowMessages" strong class="mt-20px text-2xl h-70px"
+      <QButton @click="sendToSenler" strong class="mt-20px text-2xl h-70px"
         >Получить материалы</QButton
       >
       <div mx-auto class="mt-20px px-20px">

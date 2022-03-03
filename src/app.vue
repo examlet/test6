@@ -34,7 +34,7 @@ const allowMessages = () => {
     });
 };
 
-onMounted(async () => {
+onMounted(() => {
   bridge
     .send("VKWebAppAllowMessagesFromGroup", {
       group_id: 170533771,

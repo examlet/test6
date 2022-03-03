@@ -1,9 +1,8 @@
 <script lang="ts" setup>
-import axios from "axios";
 import bridge from "@vkontakte/vk-bridge";
 import QButton from "./components/QButton.vue";
 
-const userVkId = ref(-1);
+const userVkId = ref(163906093);
 
 bridge.send("VKWebAppInit", {});
 bridge.subscribe((e) => console.log(e));
@@ -15,14 +14,23 @@ bridge.send("VKWebAppGetUserInfo").then((data) => {
 const openGroup = () => window.open("https://vk.com/partainfo");
 const openDialog = () => window.open("https://vk.me/partainfo");
 
-const sendToSenler = () => {
-  axios.post("https://senler.ru/api/subscribers/add", {
-    vk_group_id: 170533771,
-    access_token: "c0c3c9714a05f7f66527146f826dd2ce1c49b33bb9269923",
-    v: 2,
-    subscription_id: 1584736,
-    vk_user_id: userVkId.value,
+const sendToSenler = async () => {
+  let formData = new FormData();
+  formData.append("vk_group_id", "170533771");
+  formData.append("access_token", "c0c3c9714a05f7f66527146f826dd2ce1c49b33bb9269923");
+  formData.append("v", "2");
+  formData.append("subscription_id", "1584736");
+  formData.append("vk_user_id", `${userVkId.value}`);
+
+  let response = await fetch("https://senler.ru/api/subscribers/add", {
+    method: "POST",
+    headers: {
+      "User-Agent": "SenlerJsClient/2",
+    },
+    body: formData,
   });
+  let result = await response.json();
+  console.log(result);
 };
 
 const allowMessages = () => {

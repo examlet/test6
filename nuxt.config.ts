@@ -13,6 +13,20 @@ export default defineNuxtConfig({
         global: true,
         dirs: ['~/components']
     },
+    meta: {
+        title: "PARTA",
+        meta: [
+            {
+                charset: "utf-8",
+            },
+            {
+                name: "viewport",
+                content: "width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no, viewport-fit=cover",
+            }
+        ],
+        link: [],
+        script: [],
+    },
     unocss: {
         uno: true,
         attributify: true,
